@@ -2,6 +2,8 @@
 
 PDF dosyalarını organize etmek için geliştirilmiş modern bir Python masaüstü uygulaması.
 
+Uygulamanın kurulum dosyalarına ve standalone exe dosyasına ulaşmak için drive linki: https://drive.google.com/file/d/1qLSpAGhWWgO_6tOSAc1gr59iW06vZNtV/view?usp=sharing
+
 ## 🎯 Özellikler
 
 ### v2.0 Yeni Özellikler
