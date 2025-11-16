@@ -1,11 +1,11 @@
-# PDF Arşiv Organizatörü v2.0 - Akıllı Kategorizasyon
+# Arşiv Organizatörü - Akıllı Kategorizasyon
 
 PDF dosyalarını organize etmek için geliştirilmiş modern bir Python masaüstü uygulaması.
 
 ## 🎯 Özellikler
 
 ### v2.0 Yeni Özellikler
-- **🎨 Modern Dark Mode Arayüz**: CustomTkinter ile geliştirilmiş estetik ve modern GUI
+- **🎨 Dark Mode Arayüz**: CustomTkinter ile geliştirilmiş estetik ve modern GUI
 - **🧠 Akıllı Ağırlıklı Kategorizasyon**: Basit anahtar kelime araması yerine istatistiksel puanlama sistemi
   - Birincil kelimeler: +5 puan (ör: "digital twin", "genetic algorithm")
   - İkincil kelimeler: +1 puan (ör: "data", "optimization")
@@ -14,7 +14,7 @@ PDF dosyalarını organize etmek için geliştirilmiş modern bir Python masaüs
 - **📈 İşlem Takibi**: Belirsiz (indeterminate) progress bar ile görsel geri bildirim
 
 ### Genel Özellikler
-- **Duplike Tespit**: PDF dosyalarının içerik hash'ine göre aynı dosyaları tespit eder
+- **Tekrar Tespit**: PDF dosyalarının içerik hash'ine göre aynı dosyaları tespit eder
 - **Otomatik Yeniden Adlandırma**: PDF meta verilerinden başlık bilgisi alarak dosyaları yeniden adlandırır
 - **Kategori Bazlı Organizasyon**: Ağırlıklı puanlama sistemi ile dosyaları ilgili klasörlere kategorize eder
 - **Threading**: Uzun işlemler sırasında GUI donmasını önler
@@ -46,23 +46,14 @@ python pdf_organizer.py
 3. **Hedef Klasör**: Dosyaların kopyalanacağı hedef klasörü seçin
 4. **Kategori Profilleri**: v2.0'da kategori profilleri kod içinde tanımlıdır (birincil/ikincil kelimeler ile). 
    Kategori profillerini değiştirmek için `pdf_organizer.py` dosyasındaki `KATEGORI_PROFILERI` sözlüğünü düzenleyin.
-   Varsayılan kategoriler:
-   - **Afet_ve_Simulasyon**: disaster, evacuation, emergency, hazard...
-   - **Dijital_Ikiz**: digital twin, nvidia omniverse, iot...
-   - **Mobilya_Optimizasyon**: furniture production, factory layout, bottleneck...
-   - **Uretim_Verimliligi**: lean manufacturing, production efficiency, throughput...
-   - **Yapay_Zeka_ve_Genetik_Algoritma**: genetic algorithm, artificial intelligence, machine learning...
-   - **VR_XR**: virtual reality, xr, extended reality, augmented reality...
-   - **Diger**: Hiçbir kategoriye uymayan dosyalar
-
 5. **Organizasyonu Başlat** butonuna tıklayın (Progress bar işlem sırasında animasyon gösterecektir)
 
-## İşleyiş (v2.0)
+## İşleyiş
 
 1. Kaynak klasördeki tüm PDF dosyaları recursive olarak taranır
 2. Her dosya için MD5 hash hesaplanır ve duplike kontrolü yapılır
 3. PDF meta verilerinden başlık bilgisi çıkarılır ve dosya adı olarak kullanılır
-4. **PDF'in TÜM sayfalarından metin çıkarılır** (v2.0 özelliği)
+4. **PDF'in TÜM sayfalarından metin çıkarılır** 
 5. **Akıllı Ağırlıklı Kategorizasyon** yapılır:
    - Birincil kelimeler her bulunduğunda +5 puan
    - İkincil kelimeler her bulunduğunda +1 puan
