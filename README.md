@@ -1,74 +1,58 @@
-# Arşiv Organizatörü - Akıllı Kategorizasyon
+# Akıllı Arşiv Organizatörü & PDF Düzenleyici (v2.0 Modernize)
 
-PDF dosyalarını organize etmek için geliştirilmiş modern bir Python masaüstü uygulaması.
+PDF belgelerini derinlemesine analiz eden, gerçek ana başlığı tespit ederek dosyaları yeniden adlandıran ve kelime sınırları ile hatasız konu sınıflandırması yapan modern Python masaüstü uygulaması.
 
-Uygulamanın kurulum dosyalarına ve standalone exe dosyasına ulaşmak için drive linki: https://drive.google.com/file/d/1qLSpAGhWWgO_6tOSAc1gr59iW06vZNtV/view?usp=sharing
+---
 
-## 🎯 Özellikler
+## 🚀 Yapılan İyileştirmeler ve Eski Sistemin Düzeltilen Hataları
 
-### v2.0 Yeni Özellikler
-- **🎨 Dark Mode Arayüz**: CustomTkinter ile geliştirilmiş estetik ve modern GUI
-- **🧠 Akıllı Ağırlıklı Kategorizasyon**: Basit anahtar kelime araması yerine istatistiksel puanlama sistemi
-  - Birincil kelimeler: +5 puan (ör: "digital twin", "genetic algorithm")
-  - İkincil kelimeler: +1 puan (ör: "data", "optimization")
-  - Minimum skor eşiği: 10 puan (kategorize edilmek için)
-- **📊 Tüm Sayfa Analizi**: PDF'in sadece ilk sayfaları değil, TÜM sayfaları analiz edilir
-- **📈 İşlem Takibi**: Belirsiz (indeterminate) progress bar ile görsel geri bildirim
+### 1. 🔍 Derin Görsel Başlık Algılama (Eski Sistemin Metadata Hatası Çözüldü)
+* **Eski Sorun:** Sistem sadece PDF metadata'sına (`doc.metadata['title']`) ve sayfanın sadece en üst %35'ine bakıyordu. Sonuç olarak `"Microsoft Word - Belge1"`, `"Untitled"`, `"Ara Rapor"`, dergi üst bilgisi veya boş isimler dosya adı oluyordu.
+* **Yeni Çözüm:** 
+  - İlk 3 sayfa taranır; metin blokları, font boyutları ve font ağırlıkları analiz edilir.
+  - Sayfadaki en büyük fonta sahip ana başlık tespit edilir.
+  - Üst bilgi (header/dergi adı/ISSN) ve alt bilgi (sayfa numaraları) filtrelenir.
+  - Çok satırlı başlıklar doğru X-Y koordinat hizalaması ve tireleme düzeltmesiyle birleştirilir.
+  - Dosya adı oluşturulurken Türkçe karakterler (ç, ğ, ı, ö, ş, ü) korunur, Windows yasaklı karakterleri temizlenir.
 
-### Genel Özellikler
-- **Tekrar Tespit**: PDF dosyalarının içerik hash'ine göre aynı dosyaları tespit eder
-- **Otomatik Yeniden Adlandırma**: PDF meta verilerinden başlık bilgisi alarak dosyaları yeniden adlandırır
-- **Kategori Bazlı Organizasyon**: Ağırlıklı puanlama sistemi ile dosyaları ilgili klasörlere kategorize eder
-- **Threading**: Uzun işlemler sırasında GUI donmasını önler
+### 2. 🎯 Kelime Sınırı (Word Boundary) ile Hatasız Konu Sınıflandırması
+* **Eski Sorun:** `metin.count(kelime)` kullanıldığı için alt dize (substring) hataları oluyordu. Örneğin `"art"` kelimesi `"smart"` ve `"article"` içinde, `"ai"` kelimesi ise `"email"` ve `"main"` içinde binlerce sahte puan toplayıp belgeleri yanlış klasörlere atıyordu.
+* **Yeni Çözüm:**
+  - Regex kelime sınırları (`\b...\b`) ve Türkçe duyarlı normalizasyon kullanılır.
+  - **Katmanlı Ağırlık:** Başlıkta geçen anahtar kelimelere **15 puan**, özet/giriş bölümlerine **4 puan**, gövde metnine **1 puan** verilir.
+  - Uzun kitap ve tezlerin haksız puan toplamasını önleyen doygunluk sınırı uygulanır.
 
-## Kurulum
+### 3. 🖥️ Önizleme & Simülasyon (Dry-Run Tablosu)
+* **Eski Sorun:** Kullanıcı işlem başlamadan önce ne olacağını göremiyordu.
+* **Yeni Çözüm:** `🔍 Önizle & Tara (Dry-Run)` butonu ile dosyalar kopyalanmadan önce taranır; orijinal ad, bulunan başlık, atanan kategori ve üretilecek yeni dosya adı tabloda listelenir.
 
-1. Python 3.x'in yüklü olduğundan emin olun (3.8+ önerilir)
-2. Gerekli kütüphaneleri yükleyin:
+### 4. 📁 Kategori Yöneticisi & Kalıcı JSON Yapısı
+* **Eski Sorun:** Program her açıldığında kategori listesi bomboş geliyordu ya da kodun içine gömülüydü.
+* **Yeni Çözüm:** 
+  - Hazır 6 kapsamlı profil ile açılır (`Yapay Zeka & Veri`, `Yazılım & Bilişim`, `Akademik & Araştırma`, `İş & Finans`, `Hukuk & Mevzuat`, `Mühendislik & Teknoloji`).
+  - Arayüzden kategori ekleme, silme ve düzenleme yapılabilir.
+  - Kategoriler `categories.json` dosyasına otomatik kaydedilir.
+
+### 5. ⚙️ Esnek Seçenekler & Kontroller
+* **Kopyala veya Taşı:** İsteğe bağlı dosya kopyalama veya disk tasarrufu için taşıma modu.
+* **İsimlendirme Şablonu:** `Sadece Başlık`, `Kategori + Başlık` veya `Orijinal Ad + Başlık`.
+* **Gerçek İlerleme Çubuğu:** Yüzdelik ve sayısal ilerleme takibi (`24 / 100 - %24`).
+* **İptal Desteği:** İşlemi dilediğiniz zaman durdurabilme (`⏹ İptal Et`).
+
+---
+
+## 🛠️ Kurulum ve Çalıştırma
+
+### Gereksinimler
+* Python 3.8 veya üzeri (Python 3.10 - 3.14 desteklenir)
 
 ```bash
 pip install -r requirements.txt
 ```
 
-veya doğrudan:
-
-```bash
-pip install PyMuPDF customtkinter
-```
-
-## Kullanım
-
-1. Uygulamayı çalıştırın:
-
+### Başlatma
+* **Masaüstünden Tek Tıkla:** `Baslat.bat` dosyasına çift tıklayabilirsiniz.
+* **Terminalden:**
 ```bash
 python pdf_organizer.py
 ```
-
-2. **Kaynak Klasör**: Organize edilecek PDF dosyalarının bulunduğu klasörü seçin
-3. **Hedef Klasör**: Dosyaların kopyalanacağı hedef klasörü seçin
-4. **Kategori Profilleri**: v2.0'da kategori profilleri kod içinde tanımlıdır (birincil/ikincil kelimeler ile). 
-   Kategori profillerini değiştirmek için `pdf_organizer.py` dosyasındaki `KATEGORI_PROFILERI` sözlüğünü düzenleyin.
-5. **Organizasyonu Başlat** butonuna tıklayın (Progress bar işlem sırasında animasyon gösterecektir)
-
-## İşleyiş
-
-1. Kaynak klasördeki tüm PDF dosyaları recursive olarak taranır
-2. Her dosya için MD5 hash hesaplanır ve duplike kontrolü yapılır
-3. PDF meta verilerinden başlık bilgisi çıkarılır ve dosya adı olarak kullanılır
-4. **PDF'in TÜM sayfalarından metin çıkarılır** 
-5. **Akıllı Ağırlıklı Kategorizasyon** yapılır:
-   - Birincil kelimeler her bulunduğunda +5 puan
-   - İkincil kelimeler her bulunduğunda +1 puan
-   - En yüksek skoru alan kategori seçilir
-   - Minimum 10 puan eşiği altındaki PDF'ler "Diger" kategorisine atanır
-6. Dosyalar ilgili klasörlere kopyalanır (orijinal dosyalar korunur)
-7. İşlem özeti (kategori dağılımı dahil) log penceresinde gösterilir
-
-## Notlar
-
-- Dosyalar **kopyalanır**, taşınmaz (güvenlik için)
-- Hiçbir kategoriye uymayan (10 puan eşiğinin altında kalan) dosyalar `Diger` klasörüne kopyalanır
-- Aynı isimde dosya varsa, otomatik olarak sayaç eklenir (örn: `dosya_1.pdf`)
-- Kategori profilleri kod içinde tanımlıdır ve `KATEGORI_PROFILERI` sözlüğünden düzenlenebilir
-- Puanlama ayarları (BIRINCIL_PUAN, IKINCIL_PUAN, MIN_SKOR_ESIGI) kod başında sabit olarak tanımlıdır
-

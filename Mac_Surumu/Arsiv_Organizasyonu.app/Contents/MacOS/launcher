@@ -1,0 +1,7 @@
+#!/bin/bash
+CONTENTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )"
+APP_DIR="$( cd "$CONTENTS_DIR/.." >/dev/null 2>&1 && pwd )"
+BASE_DIR="$( cd "$APP_DIR/.." >/dev/null 2>&1 && pwd )"
+
+osascript -e "tell application \"Terminal\" to do script \"cd \\\"$BASE_DIR\\\" && ./Baslat_Mac.command\""
+osascript -e "tell application \"Terminal\" to activate"

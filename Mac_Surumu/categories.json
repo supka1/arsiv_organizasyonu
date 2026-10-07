@@ -1,0 +1,194 @@
+{
+  "Yapay_Zeka_ve_Veri": {
+    "birincil": [
+      "yapay zeka",
+      "artificial intelligence",
+      "machine learning",
+      "makine öğrenmesi",
+      "deep learning",
+      "derin öğrenme",
+      "neural network",
+      "sinir ağları",
+      "veri bilimi",
+      "data science",
+      "nlp",
+      "computer vision",
+      "llm",
+      "large language model"
+    ],
+    "ikincil": [
+      "algoritma",
+      "model",
+      "veri seti",
+      "dataset",
+      "python",
+      "pytorch",
+      "tensorflow",
+      "training",
+      "inference",
+      "tahmin",
+      "classification"
+    ]
+  },
+  "Yazilim_ve_Bilisim": {
+    "birincil": [
+      "yazılım",
+      "software",
+      "programlama",
+      "programming",
+      "web development",
+      "veritabanı",
+      "database",
+      "backend",
+      "frontend",
+      "api",
+      "siber güvenlik",
+      "cybersecurity",
+      "devops",
+      "cloud computing",
+      "bulut bilişim"
+    ],
+    "ikincil": [
+      "kod",
+      "code",
+      "sunucu",
+      "server",
+      "linux",
+      "git",
+      "docker",
+      "framework",
+      "mimari",
+      "architecture",
+      "güvenlik",
+      "ağ",
+      "network"
+    ]
+  },
+  "Akademik_ve_Arastirma": {
+    "birincil": [
+      "araştırma",
+      "research",
+      "metodoloji",
+      "methodology",
+      "literatür taraması",
+      "literature review",
+      "hipotez",
+      "hypothesis",
+      "kaynakça",
+      "references",
+      "doktora tezi",
+      "yüksek lisans",
+      "akademik makale",
+      "bilimsel çalışma"
+    ],
+    "ikincil": [
+      "abstract",
+      "özet",
+      "bulgular",
+      "tartışma",
+      "sonuçlar",
+      "analiz",
+      "citation",
+      "deney",
+      "örneklem",
+      "anket",
+      "istatistik"
+    ]
+  },
+  "Is_ve_Finans": {
+    "birincil": [
+      "finans",
+      "finance",
+      "muhasebe",
+      "accounting",
+      "iş planı",
+      "business plan",
+      "pazarlama",
+      "marketing",
+      "ekonomi",
+      "economy",
+      "bütçe",
+      "budget",
+      "yatırım",
+      "investment",
+      "fatura",
+      "invoice",
+      "gelir tablosu"
+    ],
+    "ikincil": [
+      "maliyet",
+      "kâr",
+      "zarar",
+      "strateji",
+      "yönetim",
+      "management",
+      "rapor",
+      "analiz",
+      "müşteri",
+      "satış",
+      "piyasa",
+      "sektör"
+    ]
+  },
+  "Hukuk_ve_Mevzuat": {
+    "birincil": [
+      "hukuk",
+      "kanun",
+      "yönetmelik",
+      "mevzuat",
+      "kararname",
+      "mahkeme",
+      "dava",
+      "sözleşme",
+      "vekaletname",
+      "içtihat",
+      "resmi gazete"
+    ],
+    "ikincil": [
+      "madde",
+      "hüküm",
+      "taraf",
+      "borçlar",
+      "ceza",
+      "hukuki",
+      "tazminat",
+      "yargı",
+      "hakim",
+      "avukat",
+      "itiraz"
+    ]
+  },
+  "Muhendislik_ve_Teknoloji": {
+    "birincil": [
+      "mühendislik",
+      "engineering",
+      "tasarım",
+      "cad",
+      "üretim",
+      "manufacturing",
+      "mekanik",
+      "elektrik",
+      "elektronik",
+      "otomasyon",
+      "robotik",
+      "robotics",
+      "dijital ikiz",
+      "digital twin",
+      "endüstri 4.0",
+      "industry 4.0"
+    ],
+    "ikincil": [
+      "sensör",
+      "sensor",
+      "iot",
+      "donanım",
+      "hardware",
+      "ölçüm",
+      "kalibrasyon",
+      "sistem",
+      "performans",
+      "simülasyon",
+      "test"
+    ]
+  }
+}

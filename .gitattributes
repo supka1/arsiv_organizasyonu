@@ -1,0 +1,4 @@
+# macOS ve Linux betikleri için LF satır sonu garantisi
+*.sh text eol=lf
+*.command text eol=lf
+launcher text eol=lf
